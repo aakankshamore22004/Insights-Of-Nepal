@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customized Tour Plans</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      padding: 20px;
+    }
+
+    .tour-form {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    select, input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #2980b9;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1c5980;
+    }
+
+    .package-info {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #eef6fb;
+      border-left: 5px solid #3498db;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tour-form">
+    <h2>Customize Your Tour Plan</h2>
+    
+    <form action="mailto:tourtravelnepal@gmail.com" method="post" enctype="text/plain">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="package">Select Tour Package:</label>
+      <select id="package" name="package" onchange="showPackageDetails()" required>
+        <option value="">-- Choose a Package --</option>
+        <option value="pokhara">Pokhara 3 Days / 2 Nights</option>
+        <option value="kathmandu">Kathmandu Cultural Tour</option>
+        <option value="mustang">Upper Mustang Jeep Tour</option>
+        <option value="annapurna">Annapurna Base Camp Trek</option>
+      </select>
+
+      <div id="details" class="package-info"></div>
+
+      <label for="message">Special Requests or Preferences:</label>
+      <textarea id="message" name="message" rows="4" placeholder="Let us know your interests..."></textarea>
+
+      <button type="submit">Submit Your Plan</button>
+    </form>
+  </div>
+
+  <script>
+    function showPackageDetails() {
+      const details = document.getElementById("details");
+      const selected = document.getElementById("package").value;
+
+      const info = {
+        pokhara: "Enjoy lakes, caves, and mountain views. Includes hotel, guide, and boating in Fewa Lake.",
+        kathmandu: "Explore heritage sites: Pashupatinath, Boudhanath, and Bhaktapur. Includes transport and lunch.",
+        mustang: "A scenic Jeep ride to the high-altitude desert. Includes permits, guide, and 4WD vehicle.",
+        annapurna: "7-day trek to base camp. Includes guide, meals, accommodation, and permits."
+      };
+
+      if (info[selected]) {
+        details.style.display = "block";
+        details.textContent = info[selected];
+      } else {
+        details.style.display = "none";
+        details.textContent = "";
+      }
+    }
+  </script>
+
+</body>
+</html>

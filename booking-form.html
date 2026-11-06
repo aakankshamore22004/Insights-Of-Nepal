@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tour Booking</title>
+    <style>
+        .success { color: green; font-weight: bold; }
+        .error   { color: red; font-weight: bold; }
+        label    { display: block; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<h2>Tour Booking Form</h2>
+
+
+    <p class="success"><?= $successMsg ?></p>
+
+    <p class="error"><?= $errorMsg ?></p>
+
+
+<form id="booking-form" novalidate>
+    <label>Full Name *</label>
+    <input type="text" name="name" required>
+
+    <label>Email *</label>
+    <input type="email" name="email" required>
+
+    <label>Phone *</label>
+    <input type="tel" name="phone" required>
+
+    <label>Destination *</label>
+    <select name="destination" required>
+        <option value="">-- Choose --</option>
+        <option>Himalayas</option>
+        <option>Pokhara</option>
+        <option>Kathmandu</option>
+        <option>Lumbini</option>
+    </select>
+
+    <label>Travel Date *</label>
+    <input type="date" name="travelDate" required>
+
+    <label>People *</label>
+    <input type="number" name="people" min="1" max="20" required>
+
+    <label>Message</label>
+    <textarea name="message"></textarea>
+
+    <br><br>
+    <button type="submit">Submit Booking</button>
+
+
+</form>
+<script>
+document.getElementById('booking-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  if (!this.reportValidity()) return;
+  const message = document.createElement('p');
+  message.className = 'success';
+  message.textContent = 'Form validated in your browser. No booking has been sent or stored. Please contact the tour operator to confirm.';
+  this.appendChild(message);
+  this.reset();
+});
+</script>
+</body>
+</html>
